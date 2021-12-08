@@ -34,7 +34,7 @@ class WordRelay:
             return False
         self.history.append(word)
         return True
-
+    
     def reset(self):
         self.history = []
     

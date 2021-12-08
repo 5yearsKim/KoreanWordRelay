@@ -48,7 +48,7 @@ YOU WIN!
 word_relay = WordRelay(import_default=True, words_path=None, use_dueum=True, debug_print=True):
 )
 ```
-- import_default(boolean): If True, import candidates of korean words from '자주 쓰이는 한국어 낱말 모음 5800' https://ko.wiktionary.org/wiki/%EB%B6%80%EB%A1%9D:%EC%9E%90%EC%A3%BC_%EC%93%B0%EC%9D%B4%EB%8A%94_%ED%95%9C%EA%B5%AD%EC%96%B4_%EB%82%B1%EB%A7%90_5800 
+- import_default(boolean): If True, import candidates of korean words from ['자주 쓰이는 한국어 낱말 모음 5800'](https://ko.wiktionary.org/wiki/%EB%B6%80%EB%A1%9D:%EC%9E%90%EC%A3%BC_%EC%93%B0%EC%9D%B4%EB%8A%94_%ED%95%9C%EA%B5%AD%EC%96%B4_%EB%82%B1%EB%A7%90_5800)
 - words_path(None|string): If given path(.txt), import candidates of words list from txt file
 - use_dueum(boolean): If True, 두음법칙 is allowed
 - debug_print(boolean): If True, print warning message on console
@@ -63,6 +63,31 @@ word_relay = WordRelay(import_default=True, words_path=None, use_dueum=True, deb
 .
 여자친구
 ```
+If you want to make game much difficult, get `killing_words.txt` from [here](https://github.com/5yearsKim/korean_word_relay/blob/main/raw_data/killing_words.txt).
 
+<hr/>
+
+###  Methods for WordRelay
+
+```python
+word_relay = WordRelay()
+
+# 주어진 낱말에 이어지는 단어 리턴
+next_word = word_relay.get_next('성질') # next_word is None 기r 질X (예: 질문)
+
+# 두 낱말이 이어지는지 여부 체크
+is_continue = word_relay.check_continue('질문', '문지기') # is_continue == True
+
+# 특정 낱말을 이미 나온말(history)에 추가
+word_relay.add_history('문지기')
+print(word_relay.history) # word_relay.history = ['질문', '문지기'], 질문 was added get_next above
+
+# history 를 초기화
+word_relay.reset()
+print(word_relay.history) # word_relay.history = []
+```
+
+## etc
+Checking whether word is valid or not is not implemented in this project, since 1. criteria for *valid language* is keep changing, 2. including korean dictionary can make this package too big. You can implement your own code to check whether word is valid or not.
 
 
