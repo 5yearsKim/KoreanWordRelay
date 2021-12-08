@@ -20,5 +20,5 @@ var/
 
 # custom
 test*
-raw_data
+raw_data/*
 !raw_data/killing_words.txt
