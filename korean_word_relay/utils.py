@@ -37,7 +37,6 @@ def words2dict(word_list, word_dict):
 
 
 def dueum(char):
-    DU_JA = ['ㄴ', 'ㄹ']
     DU_MO = ['ㅣ', 'ㅑ', 'ㅕ', 'ㅛ', 'ㅠ']
     if not checker.is_hangul(char):
         return None
@@ -45,10 +44,16 @@ def dueum(char):
     if len(ja) < 2:
         return None
     ja = list(ja)
-    if ja[0] in DU_JA and ja[1] in DU_MO:
+    cand_list = []
+    # ㄹ 두음법칙
+    if ja[0] in ['ㄹ']:
+        ja[0] = 'ㄴ'
+        cand_list.append(letter.compose(*ja))
+    # ㄴ 두음법칙
+    if ja[0] in ['ㄴ'] and ja[1] in DU_MO:
         ja[0] = 'ㅇ'
-        return letter.compose(*ja)
-    return None
+        cand_list.append(letter.compose(*ja))
+    return cand_list 
 
 if __name__ == '__main__':
     result = dueum('류')

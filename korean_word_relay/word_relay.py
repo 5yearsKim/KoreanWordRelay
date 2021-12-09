@@ -49,7 +49,7 @@ class WordRelay:
             return True
         if self.use_dueum:
             dueum_letter = dueum(last_letter)
-            if dueum_letter and dueum_letter == second[0]:
+            if dueum_letter != [] and second[0] in dueum_letter:
                 return True
         return False
 
@@ -63,8 +63,8 @@ class WordRelay:
         cand_list = [last_letter]  
         if self.use_dueum:
             dueum_letter = dueum(last_letter)
-            if dueum_letter:
-                cand_list.append(dueum_letter)
+            if dueum_letter != []:
+                cand_list = [*cand_list, *dueum_letter]
         for letter in cand_list:
             if letter in self.word_dict:
                 for cand_word in self.word_dict[letter]:

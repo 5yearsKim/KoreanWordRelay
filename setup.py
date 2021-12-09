@@ -16,7 +16,7 @@ print(type(long_description))
 
 setup(
     name='korean_word_relay',
-    version='0.0.5',
+    version='0.0.6',
     author='5yearsKim',
     author_email='hypothesis22@gmail.com',
     url='https://github.com/5yearsKim/korean_word_relay',
