@@ -1,5 +1,5 @@
 # korean-word-relay
-### 끝말잇기 패키지 for python 
+### 끝말잇기 package for python 
 * 한국어 낱말 게임 끝말잇기를 쉽게 커스터마이징 할 수 있는 패키지
 * 모델이 사용할 끝말잇기 단어 직접 선택 (난이도 조절 가능)
 * 두음법칙 적용 (여부 선택)
@@ -49,12 +49,12 @@ word_relay = WordRelay(import_default=True, words_path=None, use_dueum=True, deb
 )
 ```
 - import_default(boolean): If True, import candidates of korean words from ['자주 쓰이는 한국어 낱말 모음 5800'](https://ko.wiktionary.org/wiki/%EB%B6%80%EB%A1%9D:%EC%9E%90%EC%A3%BC_%EC%93%B0%EC%9D%B4%EB%8A%94_%ED%95%9C%EA%B5%AD%EC%96%B4_%EB%82%B1%EB%A7%90_5800)
-- words_path(None|string): If given path(.txt), import candidates of words list from txt file
-- use_dueum(boolean): If True, 두음법칙 is allowed
-- debug_print(boolean): If True, print warning message on console
+- `words_path(None|string)`: If given path(.txt), import candidates of words list from txt file
+- `use_dueum(boolean)`: If True, 두음법칙 is allowed
+- `debug_print(boolean)`: If True, print warning message on console
 
 ### Example format for words_path
-`words_path` should be None or **list of korean words in txt extension**. For instance, `word_list.txt` should be
+`words_path` should be `None` or **list of korean words in txt extension**. For instance, `word_list.txt` should be
 ```
 사랑
 우정
@@ -67,13 +67,14 @@ If you want to make game much difficult, get `killing_words.txt` from [here](htt
 
 <hr/>
 
-###  Methods for WordRelay
+###  Methods of WordRelay
 
 ```python
 word_relay = WordRelay()
 
 # 주어진 낱말에 이어지는 단어 리턴
-next_word = word_relay.get_next('성질') # next_word is None 기r 질X (예: 질문)
+# set log_history=False if you don't want to add word in history
+next_word = word_relay.get_next('성질') # next_word is None or 질X (예: 질문)
 
 # 두 낱말이 이어지는지 여부 체크
 is_continue = word_relay.check_continue('질문', '문지기') # is_continue == True
